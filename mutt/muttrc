@@ -1,0 +1,79 @@
+set imap_user = myname
+set folder = imap://smtp.domain.com/
+set spoolfile = imap://smtp.domain.com/INBOX
+set record = "+INBOX/Sent"
+set postponed = "+INBOX/Drafts"
+set trash = "+INBOX/Trash"
+set header_cache = ~/.cache/mutt
+set message_cachedir = '~/.cache/mutt'
+unset imap_passive
+set imap_keepalive = 900
+set mail_check = 120
+set realname = 'myname'
+set from = address@mail.com
+set use_from = yes
+set smtp_url = smtp://smtp.domain.com/
+set editor = /usr/bin/vim
+set signature = '~/.mutt/.signature'
+set alias_file = ~/.mutt/aliases
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+set sleep_time = 0
+set beep = no
+
+source ~/.mutt/color.mutt
+
+folder-hook . 'uncolor index "~b \"Hi Joe\" ~R !~T !~F !~p !~P"'
+folder-hook ""!"" 'color index brightyellow black "~b \"Hi Joe\" ~N !~T !~F !~p !~P"'
+
+
+bind generic             z         noop
+bind index,pager,attach  g         noop
+bind index,pager         d         noop
+bind index,pager         s         noop
+bind index,pager         c         noop
+bind generic,pager       t         noop
+
+bind generic,index,pager \Cf       next-page
+bind generic,index,pager \Cb       previous-page
+bind generic             gg        first-entry
+bind generic,index       G         last-entry
+bind pager               gg        top
+bind pager               G         bottom
+bind generic,pager       \Cy       previous-line
+bind generic,index,pager \Ce       next-line
+bind generic,index,pager \Cd       half-down
+bind generic,index,pager \Cu       half-up
+bind generic             zt        current-top
+bind generic             zz        current-middle
+bind generic             zb        current-bottom
+bind index               za        collapse-thread
+bind index               zA        collapse-all
+bind index,pager         N         search-opposite
+bind index               <Backtab> previous-new-then-unread
+bind index               \Ca       imap-fetch-mail
+bind pager               j         next-line
+bind pager               k         previous-line
+
+
+macro index,pager gi "<change-folder>=INBOX<enter>"         "open inbox"
+macro index,pager gd "<change-folder>+INBOX/Drafts<enter>"  "open drafts"
+macro index,pager gs "<change-folder>+INBOX/Sent<enter>"    "open sent"
+macro index,pager gt "<change-folder>+INBOX/Trash<enter>"   "open trash"
+macro index,pager gf "<change-folder>?"                     "open mailbox..."
+
+
+bind  index,pager    a   group-reply
+macro index,pager    dd  "<delete-message><sync-mailbox>" "move message to trash"
+macro index,pager    dat "<delete-thread><sync-mailbox>" "move thread to trash"
+bind  generic        tt  tag-entry
+bind  index          tat tag-thread
+bind  pager          tt  tag-message
+macro pager          tat "<exit><mark-message>q<enter><tag-thread>'q<display-message>" "tag-thread"
+macro index,pager    gx  "<pipe-message>urlview<Enter>" "call urlview to extract URLs out of a message"
+macro attach,compose gx  "<pipe-entry>urlview<Enter>" "call urlview to extract URLs out of a message"
+
+
+bind editor \Cp history-up
+bind editor \Cn history-down

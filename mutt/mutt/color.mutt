@@ -1,0 +1,54 @@
+# general
+color attachment    color117    color234 
+color bold          color253    color234
+color error         color30     color234 
+color indicator     color230    color238
+color markers       color138    color234 
+color message       color253    color234 
+color normal        color253    color234
+color prompt        color253    color234
+color search        color100    color234 
+color signature     color102    color234 
+color status        color111    color16
+color tilde         color130    color235 
+color tree          color208    color234 
+color underline     color253    color234
+
+# quoted
+color quoted        color33      color234
+color quoted1       color83      color234
+color quoted2       color208     color234
+color quoted3       color36      color234
+color quoted4       color77      color234
+color quoted5       color36      color234
+color quoted6       color202     color234
+color quoted7       color109     color234
+color quoted8       color41      color234
+color quoted9       color138     color234
+
+# index
+color index         color202     color234   ~F # Flagged
+color index         color39      color234   ~N # New
+color index         color39      color234   ~O       
+color index         color229     color22    ~T # Tagged
+color index         color240     color234   ~D # Deleted
+
+# header
+color hdrdefault    color30         color233 
+color header        color132        color233    '^date:'
+color header        color153        color233    '^(to|cc|bcc):'
+color header        color120        color233    '^from:'
+color header        color178        color233    '^subject:'
+color header        color31         color233    '^user-agent:'
+color header        color29         color233    '^reply-to:'
+
+# body
+color body          color51      color234  "((ftp|http|https)://|news:)[^ >)\"\t]+"
+color body          color51      color234  "[-a-z_0-9.+]+@[-a-z_0-9.]+"
+
+# compose
+color compose header            color46         color234
+color compose security_encrypt  color253        color234
+color compose security_sign     color253        color234
+color compose security_both     color253        color234
+color compose security_none     color253        color234
