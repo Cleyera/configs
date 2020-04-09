@@ -121,6 +121,8 @@ nnoremap S "_S
 vnoremap s "_s
 vnoremap S "_S
 
+nnoremap dI d^i
+
 nnoremap <C-[><C-v> :vs<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <C-[><C-s> :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
