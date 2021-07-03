@@ -100,8 +100,8 @@ cnoremap <C-l> <Right>
 vnoremap v $h
 nnoremap Y y$
 
-nnoremap <Tab> %
-vnoremap <Tab> %
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
@@ -126,15 +126,23 @@ nnoremap dI d^i
 nnoremap <C-[><C-v> :vs<CR> :exe("tjump ".expand('<cword>'))<CR>
 nnoremap <C-[><C-s> :sp<CR> :exe("tjump ".expand('<cword>'))<CR>
 
+let g:netrw_liststyle=3
+
 augroup TabGroup
     autocmd!
     autocmd FileType make setlocal list listchars=tab:»-,trail:- noexpandtab
-    autocmd BufNewFile,BufRead *.py setlocal list listchars=tab:»-,trail:- noexpandtab
+    autocmd BufNewFile,BufRead *.py setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd BufNewFile,BufRead *.js setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd BufNewFile,BufRead *.jsx setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd BufNewFile,BufRead *.yml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd BufNewFile,BufRead *.html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 augroup END
 
 augroup Brackets
     autocmd!
     autocmd FileType c,cpp inoremap <buffer> {<Enter> {<CR>}<Left><Esc><S-o>
+    autocmd BufNewFile,BufRead *.js inoremap <buffer> {<Enter> {<CR>}<Left><Esc><S-o>
+    autocmd BufNewFile,BufRead *.jsx inoremap <buffer> {<Enter> {<CR>}<Left><Esc><S-o>
 augroup END
 
 let mapleader = "\<Space>"
